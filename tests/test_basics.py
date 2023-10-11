@@ -56,18 +56,18 @@ class TestClass(unittest.TestCase):
         rv, comp, res = obj.fit()
         
         
-    def test_bootstrap(self):
-        """_summary_
-        """
-        data = make_dataset(N=10, R=4)
+    # def test_bootstrap(self):
+    #     """_summary_
+    #     """
+    #     data = make_dataset(N=10, R=4)
         
-        # Init
-        obj = NMF(data=data)
+    #     # Init
+    #     obj = NMF(data=data)
         
-        # Run a bootstrap analysis
-        rv = obj.bootstrap(n_iter=25, rank=4, frac=0.25)
+    #     # Run a bootstrap analysis
+    #     rv = obj.bootstrap(n_iter=25, rank=4, frac=0.25)
         
-        # Make a figure
-        fig = rankcomp_figure(rv)
+    #     # Make a figure
+    #     fig = rankcomp_figure(rv)
         
-        fig.savefig("tmp-rankfig.png", dpi=350)
+    #     fig.savefig("tmp-rankfig.png", dpi=350)

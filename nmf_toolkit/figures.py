@@ -2,6 +2,7 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 import numpy as np
 
+
 def cv_figure(data, **kwargs):
     """_summary_
 
@@ -45,6 +46,7 @@ def cv_figure(data, **kwargs):
     plt.tight_layout()
     
     return fig
+
 
 def rankcomp_figure(data, **kwargs):
     """_summary_

@@ -33,19 +33,22 @@ class NMF(object):
         else:
             idx = None
             
-        rv = pd.DataFrame(
+        tseries = pd.DataFrame(
             H.T, 
             index=idx,
             columns=[f"F{i}" for i in range(H.T.shape[1])]
         )
         
         # Calculate the composition
-        comp = pd.DataFrame(W.T, index=rv.columns, columns=data.columns)
+        comp = pd.DataFrame(W.T, index=tseries.columns, columns=data.columns)
         
+        print (H)
         # Compute the residual for each column
         res = list()
-        for i, c in enumerate(comp.columns):
-            bf = pd.DataFrame(comp.iloc[:, i].values * H.T).sum()
+        print (comp)
+        for c in comp.columns:
+            # Compute the total sum of the column
+            bf = pd.DataFrame(comp[c].values * H.T).sum()
             
             # Normalize to the total amount
             bf = bf / data[c].sum()
@@ -54,10 +57,10 @@ class NMF(object):
         
         # Concat
         res = pd.concat(res)
-        res.columns = rv.columns
+        res.columns = tseries.columns
         res['Residual'] = 1 - res.sum(axis=1)
             
-        return rv, comp, res
+        return tseries, comp, res
         
     def fit(self, rank=3, **kwargs):
         """Learn a NMF model for the data X.
